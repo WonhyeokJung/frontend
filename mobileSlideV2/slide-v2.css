@@ -1,0 +1,94 @@
+body { }
+
+h1 {
+  text-align: center;
+}
+
+.slide-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slide-contents {
+  position: relative;
+  display: block;
+  height: 300px;
+  /* perspective: 1000; */
+  backface-visibility: hidden;
+  transition: transform 300ms ease 0s;
+}
+
+.slide-img {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+.slide-img > a {
+  /* flex로 해야 사이즈 변경가능 */
+  display: flex;
+  /* min-width: 100%; */
+  height: 300px;
+  /* 이미지 flickering발생/강제 width height 조정으로 인한 문제인듯 */
+  /* background-size: 100% 100%; */
+  /* background-size: contain; */
+  background-size: cover;
+  /* 이미지 가운데 정렬 후 사이즈 맞추기 위함. */
+  background-position: 50%, center;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 버튼 */
+.slide-arrow {
+  position: absolute;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  /* margin: auto; */
+  border-radius: 50%;
+  background: none;
+  /* background-color: black; */
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 1);
+  z-index: 2;
+  cursor: pointer;
+  animation-name: fadeOut;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.slide-arrow:hover {
+  animation: fadeIn 0s 1 0s;
+}
+
+.slide-left {
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+.slide-right {
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }  
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* touch시 slide-arrow hide */
+@media (pointer:coarse) {
+  .slide-arrow {
+    visibility: hidden;
+  }
+}

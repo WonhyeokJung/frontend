@@ -1,0 +1,129 @@
+body {
+  height: 90vh; 
+}
+
+h1 {
+  text-align: center;
+}
+
+.slide-container {
+  position: relative;
+  overflow: hidden;
+  left: 50%;
+  min-width: 300px;
+  max-width: 800px;
+  height: 300px;
+  transform: translateX(-50%);
+}
+
+.slide-images {
+  display: flex;
+  /* position: relative; */
+  height: 300px;
+  border-radius: 5px;
+  transition: transform 300ms ease;
+}
+
+img {
+  min-width: 100%;
+  border-radius: 5px;
+  /* image flickering 방지 */
+  backface-visibility: hidden;
+  /* height는 자동조절되므로 정렬 필요없음. */
+  /* 언론사라 이미지가 짤리는걸 싫어하지 않을지? */
+  /* object-fit: cover; */
+}
+
+/* .slide-active {
+  animation-name: slideIn;
+  animation-duration: 300ms;
+  animation-iteration-count: infinite;
+} */
+
+.slide-arrow {
+  position: absolute;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  /* margin: auto; */
+  border-radius: 50%;
+  background: none;
+  /* background-color: black; */
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 1);
+  z-index: 2;
+  cursor: pointer;
+  animation-name: fadeOut;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.slide-arrow:hover {
+  animation: fadeIn 0s 1 0s;
+}
+
+.slide-left {
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+}
+
+.slide-right {
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+}
+
+div.slide-page-number {
+  position: relative;
+  margin: 0px auto;
+}
+
+.slide-page-number__content {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  bottom: 20px;
+  width: 50px;
+  height: 20px;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 3;
+}
+
+/* @keyframes slideIn {
+  from {
+    transform: translateX(-300%);
+  }
+  to {
+    transform: translateX(-700%);
+  }
+} */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }  
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* @media only screen and (max-width:768px) {
+  .slide-arrow {
+    visibility: hidden;
+  }
+} */
+
+/* touch시 slide-arrow hide */
+@media (pointer:coarse) {
+  .slide-arrow {
+    visibility: hidden;
+  }
+}
