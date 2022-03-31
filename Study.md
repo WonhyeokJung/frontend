@@ -333,7 +333,7 @@ function prev() {
       name: 'john doe'
   }
   
-var bar = foo.bind(obj);
+  var bar = foo.bind(obj);
   bar(); // obj
   var bar2 = bar.bind(obj2);
   bar2(); // obj, 한번만 적용되므로 obj2는 무시됨.
@@ -342,32 +342,31 @@ var bar = foo.bind(obj);
 - ES6에 새로 추가된 화살표 함수는 **자신을 포함하고 있는 외부 Scope**에서 This를 계승받는다.
 
   - 따라서, 화살표 함수는 **객체의 메서드 선언시** 사용하면 오류가 발생할 수 있어 **사용하지 않는다**.
-
   ```javascript
-  var obj = {
-      name: 'jane doe',
-      foo: () => {
-          console.log(this);  // window
-      },
-      hello: function() {
-          setTimeout(() => {
-              console.log(this);
-          }, 1000);  // 외부 scope인 hello의 this가 가리키는 obj === this
-      },
-  }
-  
-  obj.hello();
-  
-  // 오류의 발생
-  let person = {
-      name: 'john doe',
-      age: 20,
-      foo: () => {
-          console.log(this.name);  // undefined, 기대했던 person.name이 아니다!
-          console.log(this);  // window
-      }
-  }
-  person.foo();
+var obj = {
+    name: 'jane doe',
+    foo: () => {
+        console.log(this);  // window
+    },
+    hello: function() {
+        setTimeout(() => {
+            console.log(this);
+        }, 1000);  // 외부 scope인 hello의 this가 가리키는 obj === this
+    },
+}
+
+obj.hello();
+
+// 오류의 발생
+let person = {
+    name: 'john doe',
+    age: 20,
+    foo: () => {
+        console.log(this.name);  // undefined, 기대했던 person.name이 아니다!
+        console.log(this);  // window
+    }
+}
+person.foo();
   ```
 
 - addEventListener의 경우도 똑같이 적용되므로, 화살표 함수의 사용은 지양하는 것이 좋다.
@@ -377,12 +376,10 @@ var bar = foo.bind(obj);
   btn.addEventListener('click', function() {
       console.log(this);  // 클릭시, btn
   })
-  button.addEventListener('click', () => {
+  btn.addEventListener('click', () => {
       console.log(this);  // 클릭시, window
   })
   ```
-
-  
 
 - Strict Mode(엄격모드)에서는 호출한 객체가 없을 경우, this를 window가 아닌 **undefined**로 간주한다.
 
