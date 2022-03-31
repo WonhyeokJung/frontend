@@ -1,21 +1,33 @@
-# 기재된 기술
+# Frontend 코드 기록
+
+## 목차
+
+---
+
+1. [기재된 기술](#기재된-기술)
+2. [CSS](#CSS)
+   1. [Selector](#Selector)
+   2. [CSS Property](#CSS-Property)
+3. [JavaScript](#JavaScript)
+
+## 기재된 기술
 
 <img src="https://img.shields.io/badge/-PHP-yellow?logo=PHP&logoColor=#777BB4"> <img src="https://img.shields.io/badge/-Laravel-critical?logo=LARAVEL&logoColor=white"> <img src="https://img.shields.io/badge/-Bootstrap-blueviolet?logo=Bootstrap&logoColor=white"> <img src="https://img.shields.io/badge/-jQuery-important?logo=jQuery&logoColor=white"> <img src="https://img.shields.io/badge/-JavaScript-green?logo=JavaScript&logoColor=white"> <img src="https://img.shields.io/badge/-HTML5-blue?logo=HTML5&logoColor=white"> <a href="https://developer.mozilla.org/ko/docs/Learn/Getting_started_with_the_web/CSS_basics"><img src="https://img.shields.io/badge/-CSS3-gray?logo=CSS3&logoColor=white"></a> <img src="https://img.shields.io/badge/-Python-white?logo=Python&logoColor=blue"> 
 
 
 
-# CSS
+## CSS
 
-## Selector
+### Selector
 
-### 선택자란?
+#### 선택자란?
 
 ```css
 p {color: red; padding: 5px;}
 Selector {Declaration (property: property-value);} <- Declaration block
 ```
 
-### 종류
+#### 종류
 
 | 선택자명                         | 선언방식       | 내용                                                  |
 | -------------------------------- | -------------- | ----------------------------------------------------- |
@@ -110,9 +122,9 @@ Selector {Declaration (property: property-value);} <- Declaration block
 
 
 
-### 기타 참고 사항
+#### 기타 참고 사항
 
-#### Transition 성능 향상
+##### Transition 성능 향상
 
 - Css Property style 적용 순서에 따르면, 'Layout' 속성을 바꾸면 'Paint', 'Composite' 순서를 거치기 때문에 **Reflow**성능 저하가 일어나고, 'Paint' 속성을 바꿀 경우 'Composite' 순서를 거치기 때문에 **Repaint** 성능 저하가 일어난다.
 - 따라서 성능을 최대한 발휘하기 위해선, 'Composite' 속성만 변경하는 것이 최고이다.
@@ -149,11 +161,11 @@ function prev() {
 
 
 
-# JavaScript
+## JavaScript
 
-## Style Guide
+### Style Guide
 
-### Rules by identifier type
+#### Rules by identifier type
 
 1. Package names
    - lowerCamelCase
@@ -175,7 +187,7 @@ function prev() {
 9. Local variable names
    - lowerCamelCase
 
-### css의 kebab-case를 사용할 경우
+#### css의 kebab-case를 사용할 경우
 
 - 다음과 같은 코드가 있다고 하자.
 
@@ -197,7 +209,7 @@ function prev() {
 
 
 
-## This
+### This
 
 > This는 나를 호출한 객체를 부르는 객체이며, 함수를 호출한 방법에 의해 결정된다.
 
@@ -343,7 +355,7 @@ function prev() {
 
   - 따라서, 화살표 함수는 **객체의 메서드 선언시** 사용하면 오류가 발생할 수 있어 **사용하지 않는다**.
   ```javascript
-var obj = {
+  var obj = {
     name: 'jane doe',
     foo: () => {
         console.log(this);  // window
@@ -353,20 +365,19 @@ var obj = {
             console.log(this);
         }, 1000);  // 외부 scope인 hello의 this가 가리키는 obj === this
     },
-}
-
-obj.hello();
-
-// 오류의 발생
-let person = {
-    name: 'john doe',
-    age: 20,
-    foo: () => {
-        console.log(this.name);  // undefined, 기대했던 person.name이 아니다!
-        console.log(this);  // window
-    }
-}
-person.foo();
+  }
+  obj.hello();
+  
+  // 오류의 발생
+  let person = {
+      name: 'john doe',
+      age: 20,
+      foo: () => {
+          console.log(this.name);  // undefined, 기대했던 person.name이 아니다!
+          console.log(this);  // window
+      }
+  }
+  person.foo();
   ```
 
 - addEventListener의 경우도 똑같이 적용되므로, 화살표 함수의 사용은 지양하는 것이 좋다.
@@ -374,10 +385,10 @@ person.foo();
   ```javascript
   let btn = document.querySelector('button');
   btn.addEventListener('click', function() {
-      console.log(this);  // 클릭시, btn
+  console.log(this);  // 클릭시, btn
   })
   btn.addEventListener('click', () => {
-      console.log(this);  // 클릭시, window
+  console.log(this);  // 클릭시, window
   })
   ```
 
@@ -393,7 +404,7 @@ person.foo();
 
   
 
-# PHP, Laravel & blade
+## PHP, Laravel & blade
 
 ### 문법
 
