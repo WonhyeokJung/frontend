@@ -2,8 +2,6 @@
 
 ## 목차
 
----
-
 1. [기재된 기술](#기재된-기술)
 2. [CSS](#CSS)
    1. [Selector](#Selector)
@@ -191,21 +189,22 @@ function prev() {
 
 - 다음과 같은 코드가 있다고 하자.
 
-  ```html
-  <div data-index="1">
-      hi
-  </div>
-  <!-- 자바스크립트에서 이를 활용하고 싶다면 어떻게 할까? -->
-  ```
-
-  ```javascript
-  // kebab-case는 자바스크립트에서 camelCase로 대체된다.
-  /* Wrong */
-  div.dataset.dataIndex  // data-data-index를 반환
-  
-  /* Right */
-  div.dataset.index  // data-index 반환
-  ```
+```html
+<!-- data-index는 예외임에 유의 -->
+<div data-index="1" style="z-index:1">
+hi
+</div>
+<!-- 자바스크립트에서 이를 활용하고 싶다면 어떻게 할까? -->
+```
+```javascript
+// kebab-case는 자바스크립트에서 camelCase로 대체된다.
+/* Wrong */
+div.dataset.dataIndex  // data-data-index를 반환
+div.style.z-index = 2;
+/* Right */
+div.dataset.index  // data-index 반환
+div.style.zIndex = 99;
+```
 
 
 
@@ -454,3 +453,16 @@ function prev() {
   ```
 
   
+
+## jQuery
+
+- stop()의 사용 이유
+  - 이벤트 버블링 방지 위함.
+  - 애니메이션 등의 동작을 중지시킴.
+  - 하나의 로직 내에서 두 번의 Stop이 실행되면 다른 animation을 중지시킬 수 있는 위험성이 있음.
+
+
+
+## 추천사이트
+
+https://learn.shayhowe.com/html-css/

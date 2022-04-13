@@ -1,28 +1,54 @@
+:root {
+  --photo-min-width: 300px;
+  --photo-max-width: 600px;
+  --photo-height: 400px;
+  --slide-pagination-dot-width: 10px;
+  --slide-pagination-dot-height: 10px;
+  --slide-pagination-dot-inactive-color: #000;
+  --slide-pagination-dot-inactive-opacity: 0.2;
+}
+
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
-  height: 90vh; 
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 h1 {
+  margin-top: 0;
   text-align: center;
 }
 
 .slide-container {
-  position: relative;
   overflow: hidden;
+  position: relative;
   left: 50%;
-  min-width: 300px;
-  max-width: 800px;
-  height: 300px;
+  /* 이미지 사이즈 조절 */
+  min-width: var(--photo-min-width);
+  max-width: var(--photo-max-width);
+  height: var(--photo-height);
+  border-radius: 5px;
   transform: translateX(-50%);
 }
 
 .slide-images {
   display: flex;
   /* position: relative; */
-  height: 300px;
-  border-radius: 5px;
+  height: 100%;
   transition: transform 300ms ease;
 }
+
+/* canvas {
+  min-width: 100%;
+  border-radius: 5px;
+  backface-visibility: hidden;
+} */
 
 img {
   min-width: 100%;
@@ -42,15 +68,15 @@ img {
 
 .slide-arrow {
   position: absolute;
-  border: none;
   width: 3rem;
   height: 3rem;
   /* margin: auto; */
+  border: none;
   border-radius: 50%;
   background: none;
   /* background-color: black; */
-  font-size: 2rem;
   color: rgba(255, 255, 255, 1);
+  font-size: 2rem;
   z-index: 2;
   cursor: pointer;
   animation-name: fadeOut;
@@ -62,13 +88,13 @@ img {
   animation: fadeIn 0s 1 0s;
 }
 
-.slide-left {
+.slide-arrow__left {
   top: 50%;
   left: 5%;
   transform: translate(-50%, -50%);
 }
 
-.slide-right {
+.slide-arrow__right {
   top: 50%;
   left: 95%;
   transform: translate(-50%, -50%);
@@ -81,9 +107,8 @@ div.slide-page-number {
 
 .slide-page-number__content {
   display: flex;
+  white-space: nowrap;
   position: absolute;
-  justify-content: center;
-  align-items: center;
   right: 10px;
   bottom: 20px;
   width: 50px;
@@ -93,6 +118,8 @@ div.slide-page-number {
   color: white;
   font-size: 12px;
   font-weight: 600;
+  justify-content: center;
+  align-items: center;
   z-index: 3;
 }
 
@@ -104,6 +131,56 @@ div.slide-page-number {
     transform: translateX(-700%);
   }
 } */
+
+.slide-pagination {
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  /* bottom: 5%; */
+  width: 90px;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.slide-pagination__dot {
+  /* width, height적용 */
+  display: inline-block;
+  /* left적용위함 */
+  position: relative;
+  left: 36px;
+  width: var(--slide-pagination-dot-width);
+  height: var(--slide-pagination-dot-height);
+  margin: 0px 4px;
+  border-radius: 50%;
+  background: var(--slide-pagination-dot-inactive-color);
+  /* cursor: pointer; */
+  opacity: var(--slide-pagination-dot-inactive-opacity);
+  transform: scale(0.50);
+  transition: .2s transform, .1s left;
+}
+
+.slide-pagination__dot--prev--prev {
+  transform: scale(.50);
+}
+
+.slide-pagination__dot--prev {
+  transform: scale(.75);
+}
+
+.slide-pagination__dot--active {
+  background-color: skyblue;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slide-pagination__dot--next {
+  transform: scale(.75);
+}
+
+.slide-pagination__dot--next--next {
+  transform: scale(.50);
+}
 
 @keyframes fadeIn {
   from { opacity: 0; }
